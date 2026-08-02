@@ -1,9 +1,8 @@
-flask
-flask_cors
-dotenv
+Flask
+flask-cors
+python-dotenv
 pandas
 pydantic
-os
 joblib
 scikit-learn
 xgboost
