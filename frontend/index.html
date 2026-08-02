@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Score Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module">
+    import 'https://esm.sh/@material/web@2.3.0/all.js';
+  </script>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="theme-toggle">
+      <svg id="sunIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+      </svg>
+      <md-switch id="themeSwitch"></md-switch>
+      <svg id="moonIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+      </svg>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <span class="eyebrow"><span class="eyebrow-dot"></span>Self-report index · 0–10 scale</span>
+    <h1>Mental Health Score Predictor</h1>
+    <p class="subtitle">Answer a few questions about your habits and social media use. The model reads them like vitals
+      and returns a single wellbeing reading — the same way a pulse tells you far more than its number.</p>
+    <svg class="pulse-divider" viewBox="0 0 1180 44" preserveAspectRatio="none">
+      <path d="M0,22 L260,22 L285,22 L300,6 L318,40 L336,14 L352,22 L900,22 L920,22 L936,8 L952,36 L968,22 L1180,22" />
+    </svg>
+  </header>
+
+  <main class="app-shell">
+
+    <!-- ===================== FORM ===================== -->
+    <form class="form-card" id="predictForm" novalidate>
+
+      <p class="form-section-title">About you</p>
+      <div class="field-grid">
+
+        <md-outlined-text-field id="age" label="Age" type="number" min="10" max="100" required></md-outlined-text-field>
+
+        <md-outlined-select id="gender" label="Gender" required>
+          <md-select-option value="Male">
+            <div slot="headline">Male</div>
+          </md-select-option>
+          <md-select-option value="Female">
+            <div slot="headline">Female</div>
+          </md-select-option>
+        </md-outlined-select>
+
+        <md-outlined-select id="country" label="Country" required>
+          <md-select-option value="India">
+            <div slot="headline">India</div>
+          </md-select-option>
+          <md-select-option value="Canada">
+            <div slot="headline">Canada</div>
+          </md-select-option>
+          <md-select-option value="USA">
+            <div slot="headline">USA</div>
+          </md-select-option>
+          <md-select-option value="Australia">
+            <div slot="headline">Australia</div>
+          </md-select-option>
+          <md-select-option value="UK">
+            <div slot="headline">UK</div>
+          </md-select-option>
+          <md-select-option value="Germany">
+            <div slot="headline">Germany</div>
+          </md-select-option>
+          <md-select-option value="Japan">
+            <div slot="headline">Japan</div>
+          </md-select-option>
+          <md-select-option value="France">
+            <div slot="headline">France</div>
+          </md-select-option>
+          <md-select-option value="Spain">
+            <div slot="headline">Spain</div>
+          </md-select-option>
+          <md-select-option value="Mexico">
+            <div slot="headline">Mexico</div>
+          </md-select-option>
+          <md-select-option value="Denmark">
+            <div slot="headline">Denmark</div>
+          </md-select-option>
+          <md-select-option value="Switzerland">
+            <div slot="headline">Switzerland</div>
+          </md-select-option>
+          <md-select-option value="Ireland">
+            <div slot="headline">Ireland</div>
+          </md-select-option>
+          <md-select-option value="Turkey">
+            <div slot="headline">Turkey</div>
+          </md-select-option>
+          <md-select-option value="Other">
+            <div slot="headline">Other</div>
+          </md-select-option>
+        </md-outlined-select>
+
+        <md-outlined-select id="academicLevel" label="Academic level" required>
+          <md-select-option value="High School">
+            <div slot="headline">High School</div>
+          </md-select-option>
+          <md-select-option value="Undergraduate">
+            <div slot="headline">Undergraduate</div>
+          </md-select-option>
+          <md-select-option value="Graduate">
+            <div slot="headline">Graduate</div>
+          </md-select-option>
+        </md-outlined-select>
+      </div>
+
+      <p class="form-section-title">Social media use</p>
+      <div class="field-grid">
+        <md-outlined-select id="platform" label="Most used platform" required>
+          <md-select-option value="Facebook">
+            <div slot="headline">Facebook</div>
+          </md-select-option>
+          <md-select-option value="Instagram">
+            <div slot="headline">Instagram</div>
+          </md-select-option>
+          <md-select-option value="Twitter">
+            <div slot="headline">Twitter</div>
+          </md-select-option>
+          <md-select-option value="LinkedIn">
+            <div slot="headline">LinkedIn</div>
+          </md-select-option>
+          <md-select-option value="Snapchat">
+            <div slot="headline">Snapchat</div>
+          </md-select-option>
+          <md-select-option value="YouTube">
+            <div slot="headline">YouTube</div>
+          </md-select-option>
+          <md-select-option value="TikTok">
+            <div slot="headline">TikTok</div>
+          </md-select-option>
+          <md-select-option value="LINE">
+            <div slot="headline">LINE</div>
+          </md-select-option>
+          <md-select-option value="KakaoTalk">
+            <div slot="headline">KakaoTalk</div>
+          </md-select-option>
+          <md-select-option value="VKontakte">
+            <div slot="headline">VKontakte</div>
+          </md-select-option>
+          <md-select-option value="WhatsApp">
+            <div slot="headline">WhatsApp</div>
+          </md-select-option>
+          <md-select-option value="WeChat">
+            <div slot="headline">WeChat</div>
+          </md-select-option>
+        </md-outlined-select>
+
+        <md-outlined-select id="purpose" label="Purpose of use" required>
+          <md-select-option value="Networking">
+            <div slot="headline">Networking</div>
+          </md-select-option>
+          <md-select-option value="Education">
+            <div slot="headline">Education</div>
+          </md-select-option>
+          <md-select-option value="Entertainment">
+            <div slot="headline">Entertainment</div>
+          </md-select-option>
+          <md-select-option value="News">
+            <div slot="headline">News</div>
+          </md-select-option>
+        </md-outlined-select>
+
+        <md-outlined-text-field id="Unlocks" label="Daily Unlocks e.g (120)" type="number"
+          required></md-outlined-text-field>
+
+        <div class="wheel-field">
+          <div class="wheel-label-row"><span class="wheel-label">Average daily usage</span><span class="wheel-value"
+              id="usageBadge">4.0 hrs</span></div>
+          <md-slider id="usageSlider" min="0" max="16" step="0.1" value="4" labeled
+            aria-label="Average daily usage hours"></md-slider>
+        </div>
+      </div>
+
+      <p class="form-section-title">Daily rhythm</p>
+      <div class="field-grid">
+        <div class="wheel-field">
+          <div class="wheel-label-row"><span class="wheel-label">Study hours</span><span class="wheel-value"
+              id="studyBadge">3.0 hrs</span></div>
+          <md-slider id="studySlider" min="0" max="14" step="0.1" value="3" labeled
+            aria-label="Study hours"></md-slider>
+        </div>
+
+        <div class="wheel-field">
+          <div class="wheel-label-row"><span class="wheel-label">Physical activity</span><span class="wheel-value"
+              id="activityBadge">1.0 hrs</span></div>
+          <md-slider id="activitySlider" min="0" max="10" step="0.1" value="1" labeled
+            aria-label="Physical activity hours"></md-slider>
+        </div>
+
+        <div class="wheel-field">
+          <div class="wheel-label-row"><span class="wheel-label">Sleep per night</span><span class="wheel-value"
+              id="sleepBadge">7.0 hrs</span></div>
+          <md-slider id="sleepSlider" min="0" max="12" step="0.1" value="7" labeled
+            aria-label="Sleep hours per night"></md-slider>
+        </div>
+
+        <div class="segmented">
+          <span class="slabel">Stress level</span>
+          <div class="segmented-row" id="stressGroup">
+            <md-filter-chip label="Low" data-level="Low"></md-filter-chip>
+            <md-filter-chip label="Medium" data-level="Medium" selected></md-filter-chip>
+            <md-filter-chip label="High" data-level="High"></md-filter-chip>
+            <md-filter-chip label="Very High" data-level="Very High"></md-filter-chip>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <md-filled-button type="submit" id="submitBtn">
+          <md-circular-progress class="btn-spinner" indeterminate
+            style="--md-circular-progress-size:16px;"></md-circular-progress>
+          <span class="btn-label">Get my score</span>
+        </md-filled-button>
+        <!-- <span class="form-note">Takes about 10 seconds</span> -->
+      </div>
+      <div class="error-banner" id="errorBanner">Couldn't reach the prediction service — showing an estimate instead.
+      </div>
+    </form>
+
+    <!-- ===================== RESULT ===================== -->
+    <aside class="result-card">
+      <svg class="ecg-bg" viewBox="0 0 320 340" preserveAspectRatio="none">
+        <path d="M-20,300 L60,300 L80,300 L96,270 L114,330 L130,290 L146,300 L340,300" />
+      </svg>
+
+      <p class="result-eyebrow">Prediction</p>
+      <h2 class="result-title">Your mental health reading</h2>
+
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 320 190">
+          <path d="M 30 160 A 130 130 0 0 1 91.1 49.8" fill="none" stroke="#E4514F" stroke-width="22"
+            stroke-linecap="round" />
+          <path d="M 97 46.3 A 130 130 0 0 1 223 46.3" fill="none" stroke="#E8A628" stroke-width="22"
+            stroke-linecap="round" />
+          <path d="M 228.9 49.8 A 130 130 0 0 1 290 160" fill="none" stroke="#1FAA6D" stroke-width="22"
+            stroke-linecap="round" />
+          <circle class="needle-glow" id="needleGlow" cx="160" cy="160" r="10" fill="none" stroke="#fff"
+            stroke-width="3" />
+          <g class="needle" id="needle">
+            <line x1="160" y1="160" x2="160" y2="46" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+            <circle cx="160" cy="160" r="8" fill="#fff" />
+            <circle cx="160" cy="160" r="3.5" fill="#1C2333" />
+          </g>
+        </svg>
+        <div class="gauge-readout">
+          <div class="gauge-score" id="scoreDisplay">–<span class="max">/10</span></div>
+          <div class="gauge-status" id="statusPill"><span class="status-dot"></span><span id="statusLabel">Awaiting
+              input</span></div>
+        </div>
+      </div>
+
+      <div class="breakdown" id="breakdownArea">
+        <div class="result-placeholder" id="resultPlaceholder">
+          Fill in the form and press <strong>Get my score</strong> — the needle sweeps live once your reading is back.
+        </div>
+      </div>
+    </aside>
+  </main>
+  <footer>Estimate only — not a clinical diagnosis. If you're struggling, please reach out to a mental health
+    professional or a local support line.</footer>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
