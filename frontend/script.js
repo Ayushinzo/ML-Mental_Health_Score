@@ -361,7 +361,7 @@ form.addEventListener('submit', (e) => {
   errorBanner.style.display = 'none';
 
   // ---- REPLACE THIS URL WITH YOUR OWN BACKEND ENDPOINT ----
-  fetch('https://mental-health-score-w283.onrender.com/predict', {
+  fetch('https://ml-mental-health-score-5cel.onrender.com/predict', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
